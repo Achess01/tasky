@@ -1,0 +1,53 @@
+services:
+  php:
+    image: 'webdevops/php-nginx-dev:8.2-alpine'
+    working_dir: /var/www
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./src:/var/www
+      - ./docker/nginx.conf:/opt/docker/etc/nginx/vhost.conf
+    networks:
+      - app_network
+    depends_on:
+      - mysql
+
+  mysql:
+    image: 'mysql/mysql-server:8.0'
+    ports:
+      - '${DB_PORT:-3306}:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_DATABASE: '${DB_DATABASE}'
+      MYSQL_USER: '${DB_USERNAME}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    volumes:
+      - 'mysql_storage:/var/lib/mysql'
+    networks:
+      - app_network
+
+  phpmyadmin:
+    image: 'phpmyadmin/phpmyadmin'
+    ports:
+      - '${PMA_PORT:-8080}:80'
+    environment:
+      PMA_HOST: mysql
+      MYSQL_USERNAME: '${DB_USERNAME}'
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      PMA_USER: '${DB_USERNAME}'
+      PMA_PASSWORD: '${DB_PASSWORD}'
+    networks:
+      - app_network
+    depends_on:
+      - mysql
+
+networks:
+  app_network:
+    driver: bridge
+
+volumes:
+  mysql_storage:
+    driver: local
