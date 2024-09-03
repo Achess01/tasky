@@ -6,7 +6,7 @@ services:
       - '80:80'
       - '443:443'
     volumes:
-      - ./src:/var/www
+      - ./:/var/www
       - ./docker/nginx.conf:/opt/docker/etc/nginx/vhost.conf
     networks:
       - app_network

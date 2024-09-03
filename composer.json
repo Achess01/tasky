@@ -1,0 +1,20 @@
+{
+  "name": "achess/tasky",
+  "description": "Web to manage projects and tasks",
+  "type": "project",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Tasky\\": "app/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Achess",
+      "email": "jealtzo26@gmail.com"
+    }
+  ],
+  "require": {
+    "ext-pdo": "*"
+  }
+}
