@@ -1,6 +1,3 @@
-<head>
-    <link rel="stylesheet" href="css/styles.css" type="text/css">
-</head>
 <?php
 
 use Tasky\Controllers\UserController;

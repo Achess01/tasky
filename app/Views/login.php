@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css" type="text/css">
     <title>Login</title>
 </head>
 <body>
@@ -21,13 +22,14 @@
                 </label>
             </div>
             <div class="input-container">
-                <label>
+                <label for="password">
                     <strong>Password</strong>
                     <br/>
                     <input type="password" name="password" required>
                 </label>
+
             </div>
-            <div>
+            <div class="button-container">
                 <button type="submit" class="app-btn">Login</button>
             </div>
         </form>
