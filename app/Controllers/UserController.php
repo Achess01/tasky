@@ -23,19 +23,20 @@ class UserController
                 header('Location: /dashboard');
                 exit;
             } else {
-                $error = "Invalid email or password";
+                $error = "Correo y/o contraseña incorrectos";
                 require_once './app/Views/login.php';
             }
+        } else if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_SESSION['user_id'])) {
+            header('Location: /dashboard');
         } else {
             require_once './app/Views/login.php';
         }
     }
 
-    public function logout()
+    public function logout(): void
     {
         $this->authService->logout();
         header('Location: /login');
-        exit;
     }
 }
 

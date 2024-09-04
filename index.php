@@ -1,8 +1,11 @@
 <?php
 
+use Tasky\Controllers\DashboardController;
 use Tasky\Controllers\UserController;
+use Tasky\Models\Project;
 use Tasky\Models\User;
 use Tasky\Services\AuthService;
+use Tasky\Services\ProjectService;
 use Tasky\Services\Database;
 
 require("vendor/autoload.php");
@@ -13,6 +16,9 @@ $db = new Database($config['db']);
 $userModel = new User($db);
 $authService = new AuthService($userModel);
 $userController = new UserController($authService);
+$projectModel = new Project($db);
+$projectService = new ProjectService($projectModel);
+$dashboardController = new DashboardController($projectService);
 
 // Routing
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -25,7 +31,7 @@ switch ($uri) {
         $userController->logout();
         break;
     case '/dashboard':
-        echo 'dashboard';
+        $dashboardController->getProjects();
         break;
     default:
         echo "404 Not Found";
