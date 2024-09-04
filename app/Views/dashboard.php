@@ -33,12 +33,15 @@
                             echo $project['description'];
                             ?>
                         </p>
-                        <small>
-                            Fecha de entrega:
-                            <?php
-                            echo $project['estimate_end_date'];
-                            ?>
-                        </small>
+                        <div class="footer-card">
+                            <small>
+                                Fecha de entrega:
+                                <?php
+                                echo $project['estimate_end_date'];
+                                ?>
+                            </small>
+                            <a>Ver</a>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             <?php endif; ?>

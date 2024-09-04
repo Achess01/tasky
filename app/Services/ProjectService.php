@@ -14,6 +14,6 @@ class ProjectService
     }
 
     public function getProjects(int $user_id): array {
-        return $this->projectModel->findUserProjects($user_id);
+        return $this->projectModel->findUserProjects($user_id) ?? [];
     }
 }

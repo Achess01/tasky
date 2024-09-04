@@ -15,6 +15,7 @@ CREATE TABLE project_task_status (
                 description VARCHAR(250) NOT NULL,
                 end_status BOOLEAN DEFAULT false NOT NULL,
                 project_id BIGINT NOT NULL,
+                status_order BIGINT NOT NULL,
                 PRIMARY KEY (project_task_status)
 );
 

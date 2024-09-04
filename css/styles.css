@@ -112,7 +112,6 @@ h1, h2, h3, h4 {
 }
 
 .card-project {
-    cursor: pointer;
     padding: .8rem;
     border-radius: 10px;
     border: 1px solid var(--orange);
@@ -146,4 +145,21 @@ h1, h2, h3, h4 {
 .header-content a {
     text-decoration: underline;
     color: black;
+}
+
+.footer-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-card a {
+    text-decoration: none;
+    background-color: var(--black);
+    padding: .2rem .6rem;
+    width: 50px;
+    text-align: center;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
 }
