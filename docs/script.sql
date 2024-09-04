@@ -55,6 +55,7 @@ CREATE TABLE adm_user (
                 birthday DATE NOT NULL,
                 phone_number VARCHAR(25) NOT NULL,
                 active BOOLEAN DEFAULT true NOT NULL,
+                UNIQUE KEY(email),
                 PRIMARY KEY (user_id)
 );
 
