@@ -1,5 +1,7 @@
+<head>
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
+</head>
 <?php
-
 
 use Tasky\Controllers\UserController;
 use Tasky\Models\User;
@@ -24,6 +26,9 @@ switch ($uri) {
         break;
     case '/logout':
         $userController->logout();
+        break;
+    case '/dashboard':
+        echo 'dashboard';
         break;
     default:
         echo "404 Not Found";
