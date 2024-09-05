@@ -93,11 +93,33 @@ class Project
 
     public function updateTaskStatus(int $task_id, int $new_task_status): mixed
     {
+        $task = $this->findTask($task_id);
+        if ($task !== null) {
+            $stmt = $this->db->prepare("
+                INSERT INTO task_status_log (changed_on, task_id,previous_status_id, new_status_id) 
+                VALUES (NOW(), :task_id, :prev, :new_status_id)
+            ");
+            $stmt->execute(['prev' => $task['project_task_status'], 'new_status_id' => $new_task_status, 'task_id' => $task_id]);
+        }
+
         $stmt = $this->db->prepare('UPDATE adm_task SET project_task_status = :project_task_status WHERE task_id = :task_id');
         $stmt->execute(['project_task_status' => $new_task_status, 'task_id' => $task_id]);
         return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
     }
 
+
+    public function findTask(int $task_id): mixed
+    {
+        $stmt = $this->db->prepare(
+            "
+            SELECT * 
+            FROM adm_task t
+            WHERE t.task_id = :task_id;
+            "
+        );
+        $stmt->execute(['task_id' => $task_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
     public function findPermissionsByProject(int $project_id, int $user_id, string $action, string $entity): ?array
     {
@@ -119,6 +141,25 @@ class Project
         );
         $stmt->execute(['user_id' => $user_id, 'project_id' => $project_id, 'action' => $action, 'entity' => $entity]);
         return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
+    }
+
+    public function createProject(array $data, int $user_id)
+    {
+        $stmt = $this->db->prepare("
+                INSERT INTO adm_project (name, description, start_date, estimate_end_date) 
+                VALUES (:name, :description, :start_date, :estimate_end_date)
+            ");
+        $stmt->execute($data);
+
+        $last_id = $this->db->lastInsertId('adm_project');
+        $stmt2 = $this->db->prepare("
+                INSERT INTO adm_project_user_role (user_id, project_id, role_id) 
+                VALUES (:user_id, :project_id, :role_id)
+            ");
+        $stmt2->execute(['user_id' => $user_id, 'project_id' => $last_id, 'role_id' => 1]);
+
+
+        return $stmt->fetch(PDO::FETCH_OBJ);
     }
 }
 

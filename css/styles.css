@@ -176,7 +176,7 @@ h1, h2, h3, h4 {
 .container-404 a {
     text-decoration: underline;
     color: var(--orange);
-    font-size: 1.2rem   ;
+    font-size: 1.2rem;
 }
 
 .project-board-container {
@@ -205,4 +205,15 @@ h1, h2, h3, h4 {
     padding: .5rem;
     margin-bottom: .5rem;
     user-select: none;
+}
+
+.button-wrapper-dashboard {
+    width: 300px;
+    margin: 1rem 0;
+}
+
+.container-small {
+    width: 80%;
+    max-width: 1200px;
+    margin: 2rem auto;
 }

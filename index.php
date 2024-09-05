@@ -41,6 +41,9 @@ switch ($uri) {
     case '/task/update-status':
         $boardController->updateTaskStatus();
         break;
+    case '/projects/create':
+        $dashboardController->createProject();
+        break;
     default:
         require_once './app/Views/404NotFound.php';
         break;

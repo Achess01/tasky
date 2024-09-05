@@ -42,4 +42,8 @@ class ProjectService
     {
         return boolval($this->projectModel->findPermissionsByProject($project_id, $user_id, $action, $entity));
     }
+
+    public function createProject(array $data, int $user_id): mixed {
+        return $this->projectModel->createProject($data, $user_id) ?? null;
+    }
 }

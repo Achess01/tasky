@@ -18,6 +18,9 @@
         <h1>DASHBOARD</h1>
         <h2><?php echo $_SESSION['name'] ?? '' ?></h2>
         <h2 class="current-projects-title">Proyectos actuales</h2>
+        <div class="button-wrapper-dashboard">
+            <button class="app-btn" id="new-project-button">Nuevo proyecto</button>
+        </div>
         <div class="projects">
             <?php if (isset($projects)) : ?>
                 <?php foreach ($projects as $project) : ?>
@@ -50,6 +53,12 @@
     </main>
 
 </div>
+<script>
+    const buttonCreate = document.getElementById('new-project-button');
+    buttonCreate.addEventListener("click", () => {
+        window.location.href = '/projects/create'
+    })
+</script>
 </body>
 </html>
 

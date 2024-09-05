@@ -77,6 +77,9 @@
 
 
     function updateEntity(status_id, task_id, onSuccess) {
+        if(!status_id || !task_id) {
+            return;
+        }
         fetch('/task/update-status', {
             method: 'POST',
             headers: {
