@@ -2,6 +2,7 @@
 
 use Tasky\Controllers\DashboardController;
 use Tasky\Controllers\UserController;
+use Tasky\Controllers\BoardController;
 use Tasky\Models\Project;
 use Tasky\Models\User;
 use Tasky\Services\AuthService;
@@ -19,6 +20,7 @@ $userController = new UserController($authService);
 $projectModel = new Project($db);
 $projectService = new ProjectService($projectModel);
 $dashboardController = new DashboardController($projectService);
+$boardController = new BoardController($projectService);
 
 // Routing
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -33,7 +35,13 @@ switch ($uri) {
     case '/dashboard':
         $dashboardController->getProjects();
         break;
+    case '/projects':
+        $boardController->getBoard();
+        break;
+    case '/task/update-status':
+        $boardController->updateTaskStatus();
+        break;
     default:
-        echo "404 Not Found";
+        require_once './app/Views/404NotFound.php';
         break;
 }

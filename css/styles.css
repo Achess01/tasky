@@ -163,3 +163,46 @@ h1, h2, h3, h4 {
     border-radius: 10px;
     cursor: pointer;
 }
+
+.container-404 {
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-404 a {
+    text-decoration: underline;
+    color: var(--orange);
+    font-size: 1.2rem   ;
+}
+
+.project-board-container {
+    padding: 2rem;
+    width: 90%;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.main-board-content {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+}
+
+.section-task {
+    width: 300px;
+    min-width: 300px;
+    border: 1px solid var(--orange);
+    padding: 0 .5rem;
+}
+
+.card-task {
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: .5rem;
+    margin-bottom: .5rem;
+    user-select: none;
+}

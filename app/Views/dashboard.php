@@ -16,6 +16,7 @@
 <div class="dashboard-container">
     <main class="main-dashboard-content">
         <h1>DASHBOARD</h1>
+        <h2><?php echo $_SESSION['name'] ?? '' ?></h2>
         <h2 class="current-projects-title">Proyectos actuales</h2>
         <div class="projects">
             <?php if (isset($projects)) : ?>
@@ -40,7 +41,7 @@
                                 echo $project['estimate_end_date'];
                                 ?>
                             </small>
-                            <a>Ver</a>
+                            <a href="/projects?id=<?php echo $project['project_id'] ?>">Ver</a>
                         </div>
                     </div>
                 <?php endforeach; ?>

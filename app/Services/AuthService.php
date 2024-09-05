@@ -20,6 +20,8 @@ class AuthService
 
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['user_id'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['name'] = $user['first_name'].' '.$user['last_name'];
             return true;
         }
 
