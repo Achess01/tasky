@@ -7,18 +7,28 @@
     <title>Proyecto <?php if (isset($project)) echo $project['name'] ?></title>
 </head>
 <body>
-<div class="header">
-    <div class="header-content">
-        <h1>Tasky</h1>
-        <a href="/logout">Cerrar sesión</a>
-    </div>
-</div>
+<?php
+require_once './app/Views/header.php';
+?>
 <?php if (isset($project)) : ?>
     <div class="project-board-container">
         <a href="/dashboard"><h3>Regresar</h3></a>
         <br/>
         <h2><?= $project['name'] ?></h2>
         <br/>
+        <?php if (isset($can_create) && $can_create) : ?>
+            <div style="display: flex">
+                <div class="button-wrapper-dashboard">
+                    <button class="app-btn" id="tasks-button">+</button>
+                </div>
+                <div class="button-wrapper-dashboard">
+                    <button class="app-btn" id="add-users">+ Usuarios</button>
+                </div>
+                <div class="button-wrapper-dashboard">
+                    <button class="app-btn" id="edit-roles">Roles</button>
+                </div>
+            </div>
+        <?php endif; ?>
         <div class="main-board-content">
             <?php if (isset($separated_tasks) && isset($status)) : ?>
                 <?php foreach ($status as $status_section) : ?>
@@ -44,6 +54,11 @@
                                     echo $task['due_date'];
                                     ?>
                                 </small>
+                                <div style="width: 70px">
+                                    <button class="app-btn edit-button-task" style="font-size: .8rem"
+                                            data-task="<?php echo $task['task_id'] ?>">Editar
+                                    </button>
+                                </div>
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -77,7 +92,7 @@
 
 
     function updateEntity(status_id, task_id, onSuccess) {
-        if(!status_id || !task_id) {
+        if (!status_id || !task_id) {
             return;
         }
         fetch('/task/update-status', {
@@ -105,6 +120,27 @@
                 console.error("Error:", error);
             });
     }
+
+
+    const taskButton = document.getElementById('tasks-button');
+    taskButton.addEventListener("click", () => {
+        window.location.href = '/projects/task?id=<?php echo $project['project_id'] ?>'
+    });
+
+    const addUserButton = document.getElementById('add-users');
+    addUserButton.addEventListener("click", () => {
+        window.location.href = '/projects/addUser?id=<?php echo $project['project_id'] ?>'
+    });
+
+    const editRoles = document.getElementById('edit-roles');
+    editRoles.addEventListener("click", () => {
+        window.location.href = '/projects/editUserRoles?id=<?php echo $project['project_id'] ?>'
+    });
+
+    const editButtons = Array.from(document.getElementsByClassName('app-btn edit-button-task'));
+    editButtons.forEach((b) => b.addEventListener("click", (ev) => {
+        window.location.href = `/projects/task?id=<?php echo $project['project_id'] ?>&task_id=${ev.target.dataset.task}`
+    }));
 
 </script>
 </body>

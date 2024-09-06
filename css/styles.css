@@ -61,7 +61,7 @@ h1, h2, h3, h4 {
     width: 100%;
 }
 
-.input-container input {
+.input-container input, .input-container select {
     border-radius: .8rem;
     padding: .5rem 1rem;
     border: 1px solid var(--orange-light);
@@ -69,7 +69,11 @@ h1, h2, h3, h4 {
     box-sizing: border-box;
 }
 
-.input-container input:focus-visible {
+.input-container select {
+    background-color: white;
+}
+
+.input-container input:focus-visible, .input-container input:focus-visible {
     outline: none;
     border-color: var(--orange);
 }
@@ -147,6 +151,28 @@ h1, h2, h3, h4 {
     color: black;
 }
 
+.header-menu {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.header-menu h1 {
+    margin-right: 1.5rem;
+}
+
+.header-menu a {
+    margin: 0 .5rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 .5rem;
+}
+
+.header-menu a:hover {
+    background: var(--orange-light);
+}
+
 .footer-card {
     display: flex;
     align-items: center;
@@ -196,7 +222,7 @@ h1, h2, h3, h4 {
     width: 300px;
     min-width: 300px;
     border: 1px solid var(--orange);
-    padding: 0 .5rem;
+    padding: 0 .5rem 4rem;
 }
 
 .card-task {
@@ -208,12 +234,50 @@ h1, h2, h3, h4 {
 }
 
 .button-wrapper-dashboard {
-    width: 300px;
-    margin: 1rem 0;
+    width: 150px;
+    margin: 0 1rem 1rem 0;
 }
 
 .container-small {
     width: 80%;
     max-width: 1200px;
     margin: 2rem auto;
+}
+
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+table thead tr {
+    background-color: var(--orange);
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    border: 1px solid #dddddd;
+}
+
+table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+table tbody tr:last-of-type {
+    border-bottom: 2px solid var(--orange-light);
+}
+
+table tbody tr:hover {
+    background-color: #f1f1f1;
 }

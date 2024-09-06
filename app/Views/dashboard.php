@@ -7,12 +7,9 @@
     <title>Dashboard</title>
 </head>
 <body>
-<div class="header">
-    <div class="header-content">
-        <h1>Tasky</h1>
-        <a href="/logout">Cerrar sesión</a>
-    </div>
-</div>
+<?php
+require_once './app/Views/header.php';
+?>
 <div class="dashboard-container">
     <main class="main-dashboard-content">
         <h1>DASHBOARD</h1>
@@ -50,8 +47,13 @@
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
+        <div style="margin-top: 2rem">
+            <a href="/report/taskCountByStatus"><h4>Tareas por estado</h4></a>
+            <a href="/report/tasksByUserAndProject"><h4>Tareas por usuario y proyecto</h4></a>
+            <a href="/report/totalTimeByProject"><h4>Tiempo total invertido en cada proyecto</h4></a>
+            <a href="/report/taskStatusHistory"><h4>Historial de cambios de estado en tareas</h4></a>
+        </div>
     </main>
-
 </div>
 <script>
     const buttonCreate = document.getElementById('new-project-button');

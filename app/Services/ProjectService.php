@@ -6,7 +6,7 @@ use Tasky\Models\Project;
 
 class ProjectService
 {
-    private Project $projectModel;
+    public Project $projectModel;
 
     public function __construct(Project $projectModel)
     {
@@ -28,6 +28,11 @@ class ProjectService
         return $this->projectModel->findTasksByProject($project_id, $user_id) ?? [];
     }
 
+    public function getTasksById(int $task_id): mixed
+    {
+        return $this->projectModel->findTaskById($task_id) ?? null;
+    }
+
     public function getStatus(): array
     {
         return $this->projectModel->findStatus() ?? [];
@@ -43,7 +48,28 @@ class ProjectService
         return boolval($this->projectModel->findPermissionsByProject($project_id, $user_id, $action, $entity));
     }
 
-    public function createProject(array $data, int $user_id): mixed {
+    public function createProject(array $data, int $user_id): mixed
+    {
         return $this->projectModel->createProject($data, $user_id) ?? null;
+    }
+
+    public function createTask(array $data): mixed
+    {
+        return $this->projectModel->createTask($data) ?? null;
+    }
+
+    public function updateTask(array $data): int
+    {
+        return $this->projectModel->updateTask($data);
+    }
+
+    public function getUsersByProject(int $project_id): array
+    {
+        return $this->projectModel->findUsersByProjectId($project_id);
+    }
+
+    public function usersToAdd(int $project_id): array
+    {
+        return $this->projectModel->notInProjectUsers($project_id);
     }
 }

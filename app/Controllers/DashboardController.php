@@ -26,10 +26,11 @@ class DashboardController
     public function createProject(): void {
         if(!isset($_SESSION['user_id'])) {
             header('Location: /login');
+            exit;
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            require_once './app/Views/create-project.php';
+            require_once './app/Views/create_project.php';
         } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $this->projectService->createProject($_POST, $_SESSION['user_id']);

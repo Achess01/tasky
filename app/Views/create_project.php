@@ -7,12 +7,9 @@
     <title>Proyecto <?php if (isset($project)) echo $project['name'] ?></title>
 </head>
 <body>
-<div class="header">
-    <div class="header-content">
-        <h1>Tasky</h1>
-        <a href="/logout">Cerrar sesión</a>
-    </div>
-</div>
+<?php
+require_once './app/Views/header.php';
+?>
 <div class="project-board-container">
     <a href="/dashboard"><h3>Regresar</h3></a>
     <h2>Crear proyecto</h2>
